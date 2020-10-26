@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<h1 class="text-center mb-3">Опросники</h1>
+		<a class="btn btn-secondary btn-sm mb-3" href="/">На начальную страницу</a>
+		{% if allquestionnarires %}
+			{% for questionnaires in allquestionnarires %}
+				<div class="card mb-3">
+					<div class="card-body">
+						{% if date >= questionnaires.start_date %}
+							<a class="btn btn-primary btn-sm" href="{% url 'polls:questions_in_questionnaire' questionnaires.id %}">{{ questionnaires.questionnaire_text }}</a>
+							<p class="lead">Тест доступен с: {{questionnaires.start_date}}</p>
+						{% else %}
+							<a class="btn btn-primary btn-sm disabled" href="{% url 'polls:questions_in_questionnaire' questionnaires.id %}">{{ questionnaires.questionnaire_text }}</a>
+							<p class="lead">Тест будет доступен: {{questionnaires.start_date}}</p>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+		<p>No polls available</p>
+		{% endif %}
+	{% else %}
+   		<li>Для просмотра этой страницы войдите в ккаунт </li>
+   		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>  
+{% endif %}
+
+{% endblock %}

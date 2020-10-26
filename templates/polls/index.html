@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+	{% if user.is_authenticated %}
+     	<div class="card text-center">
+     		<div class="card-body">
+     			<h1>{{ user.get_username }}, добро пожаловать в Opros</h1>
+				<p>Это F2.2 Project</p>
+				<a class="btn btn-dark" href="{% url 'polls:questionnaires_list' %}">Посмотреть доступные опросы</a>
+				<a class="btn btn-dark" href="{% url 'pages:results'%}">Посмотреть результаты</a>
+			</div>
+		</div>  
+   {% else %}
+   		<li>Для просмотра этой страницы войдите в ккаунт </li>
+   		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>  
+   {% endif %}
+
+{% endblock %}

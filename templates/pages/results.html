@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<h1 class="mb-5 text-center">Результаты </h1>
+
+		<ul class="list-group mb-5">
+			<li class="list-group-item">
+			Колличество набранных вами очков : <span class="badge badge-success float-right">{{ user_raiting.raiting }}</span>
+			</li>
+		</ul>
+		
+		<a class="btn btn-dark" href="/">На начальную страницу</a>
+	{% else %}
+   		<li>Для просмотра этой страницы войдите в ккаунт </li>
+   		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>  
+	{% endif %}
+
+{% endblock %}

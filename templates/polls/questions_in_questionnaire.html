@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Опрос: {{ questionnaires.questionnaire_text }}{% endblock title %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<h1 class="text-center mb-3">{{ questionnaires.questionnaire_text }}</h1>
+		<a class="btn btn-secondary btn-sm mb-3" href="{% url 'polls:questionnaires_list' %}">К опросам</a>
+		{% if questions_in_questionnaire %}
+			{% for question in questions_in_questionnaire %}
+				<div class="card mb-3">
+					<div class="card-body">
+						<p class="lead">{{ question.question.question_text }}</p>
+						<a href="{% url 'polls:detail' question.id %}" class="btn btn-primary btn-sm">Ответить</a>
+						
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>No polls available</p>
+		{% endif %}
+	{% else %}
+   		<li>Для просмотра этой страницы войдите в ккаунт </li>
+   		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>  
+	{% endif %}
+
+{% endblock %}
