@@ -1,4 +1,4 @@
-# PWS-8_F2_HR_project
+# PWS-11_F2_HR_project
 
 ### Для запуска проекта:
 
@@ -19,4 +19,4 @@ admin - admin (администратор); The_Creator - Creator123 (персо
 
 Опросы с вопросами создаются админом/персоналом через панель администрирования.
 
-Ссылка на Heroku: https://sleepy-woodland-58553.herokuapp.com
+Ссылка на Heroku: https://mysterious-springs-44254.herokuapp.com
